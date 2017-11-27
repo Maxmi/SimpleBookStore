@@ -4,12 +4,21 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
-    "db:reset": "",
-    "load_schema": "",
-    "load_init_data": "",
-    "sesstion_store:create": "",
+
+    "db:create": "psql -f src/models/db/schema.sql",
+    "load_data": "psql -d bookstore < src/models/db/seed/init_data.sql",
+
+    "db:reset": "npm run db:create && npm run load_data && npm run session_store:create",
+
+    "session_store:create": "psql bookstore < node_modules/connect-pg-simple/table.sql",
+
+    "test:db:create": "createdb bookstore_test",
+    "test:db:drop": "dropdb bookstore_test",
+    "test:db:load_schema": "psql bookstore_test < ./src/models/db/schema.sql",
+    "test:db:load_data": "psql bookstore_test < ./test/seed/books.sql",
+    "test:db:reset": "npm run test:db:drop && npm run test:db:create && npm run test:db:load_schema && npm run test:db:load_data && npm run sesstion_store:create",
+    "test": "export NODE_ENV=test && npm run test:db:reset && mocha --exit",
     "lint": "eslint *.js"
   },
   "keywords": [],
