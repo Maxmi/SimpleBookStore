@@ -1,0 +1,22 @@
+extends layout
+block content
+  h1 New Book
+  br
+  a#addBook(href='/') Go Back to Home Page
+    div.container
+      p #{message}
+      
+      form#addBook.form-horizontal(method='POST' action='/add')
+        label(for='title') Title:
+        input#title.form-control(type='text' name='title')
+        br
+        
+        label(for='author') Author:
+        input#author.form-control(type='text' name='author')
+        br
+          
+        label(for='genre') Genre:
+        input#genre.form-control(type='text' name='genre')
+        br
+        
+        button#addBookBtn(type='submit') Add to inventory 

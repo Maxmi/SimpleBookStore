@@ -5,14 +5,10 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-
     "db:create": "psql -f src/models/db/schema.sql",
     "load_data": "psql -d bookstore < src/models/db/seed/init_data.sql",
-
     "db:reset": "npm run db:create && npm run load_data && npm run session_store:create",
-
     "session_store:create": "psql bookstore < node_modules/connect-pg-simple/table.sql",
-
     "test:db:create": "createdb bookstore_test",
     "test:db:drop": "dropdb bookstore_test",
     "test:db:load_schema": "psql bookstore_test < ./src/models/db/schema.sql",
@@ -29,6 +25,7 @@
     "connect-pg-simple": "^4.2.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
+    "express-paginate": "^0.3.0",
     "express-session": "^1.15.6",
     "lodash": "^4.17.4",
     "pg-promise": "^7.3.2",

@@ -1,25 +1,36 @@
 const router = require('express').Router();
-const books = require('../../models/db/books');
-const booksRoutes = require('./books');
+const booksQueries = require('../../models/db/books');
+// const booksRoutes = require('./books');
 
-//list of all books should be displayed on the home page
-//list should be paginated (we have lots of books)
-//clickin on each book should open it's detail page
-//or have a button for each book - view details
-//where should updating and deleting be done?
-//on the home page or on details page?
-//probably on details page for each book
-//probably on the home page there should be a form for adding new book
-//or a button/link clickin on which should open the form - yes, admin page 
-//search field also should be on the home page
-router.get('/', (req, res, next) => {
-  books.getAllBooks()
+router.get('/', (req, res) => {
+  const currentPage = parseInt(req.query.page || 1);
+  const limit = 10;
+  const offset = (currentPage - 1) * limit;
+  const numPageLinks = 10;
+  const lastPage = currentPage + numPageLinks;
+  // const isMoreRows = booksQueries.numRowsAfterOffset(offset, numPageLinks * limit);
+
+  booksQueries.getAllBooks(limit, offset)
     .then(books => {
-      res.render('../../views/index', {
-        //
-      })
+      res.render('books/index', {
+        title: 'SimpleBookStore Home Page',
+        data: books,
+        currentPage,
+        lastPage,
+      });
     })
-    .catch(err => next(err));
+    .catch(err => console.log(err));
 });
 
-// router.use('/books', )
+//route to view form for adding new book
+router.get('/new', (req, res) => {
+  res.render('books/new');
+});
+
+
+// route to view book details page
+router.get('/?bookID', (req, res) => {
+  res.render('books/?bookID');
+});
+
+module.exports = router;

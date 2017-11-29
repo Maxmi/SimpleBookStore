@@ -1,14 +1,15 @@
-const pgp = require('pg-promise');
-const monitor = require('pg-monitor');
-monitor.attach({});
+const pgp = require('pg-promise')();
 
-// const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/bookstore';
+// const monitor = require('pg-monitor');
+// monitor.attach({});
 
-const connectionString = {
-  host: 'localhost',
-  port: 5432,
-  database: process.env.NODE_ENV === 'test' ? 'bookstore_test' : 'bookstore'
-};
+const connectionString = process.env.DATABASE_URL || `postgres://${process.env.USER}@localhost:5432/bookstore`;
+
+// const connectionString = {
+//   host: 'localhost',
+//   port: 5432,
+//   database: process.env.NODE_ENV === 'test' ? 'bookstore_test' : 'bookstore'
+// };
 
 const db = pgp(connectionString);
 

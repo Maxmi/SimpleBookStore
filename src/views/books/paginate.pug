@@ -1,0 +1,8 @@
+div#pagination
+  if(currentPage != 1)
+    a(href='/?page=1')= '1 '
+    if(currentPage > 10)
+      a(href='/?page='+(currentPage-10))= '<<< '
+  - for(var i = currentPage; i < lastPage; i++) 
+    a(href='/?page='+i)= i+' '
+  a(href='/?page='+(lastPage))= '>>>' 

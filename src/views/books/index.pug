@@ -1,0 +1,28 @@
+extends layout
+block content
+  h1 Hello Reader!
+  
+  a#addBook.btn.btn-primary(href='new' role='button') Add New Book 
+  
+  div.form-group
+    form#searchForm.form-horizontal
+      input#searchInput.form-control(type='text' name='searchInput' placeholder='Search by title, author or genre')
+      button#searchBtn.btn-primary(type='submit') Search
+    
+  div#listOfBooks
+    table
+      tr
+        th #
+        th Titles 
+        th Details 
+      each book in data 
+        tr
+          td= book.id
+          td= book.title 
+          td
+            a(href='details') view details 
+            //- this link should be leading to /:bookID or /?bookID=id  
+  br
+  include paginate
+
+  

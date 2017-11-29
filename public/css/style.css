@@ -1,0 +1,17 @@
+body {
+  width: 90%;
+  margin: 0 auto;
+  /*text-align: center;*/
+}
+
+#searchForm {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 5px auto;
+  display: inline-block;
+}
+
+#searchInput {
+  display: inline-block;
+  width: 60%;
+}

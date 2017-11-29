@@ -1,41 +1,45 @@
-const db = require('db');
+const db = require('./db');
 
 const addBook = (title, author, genre) => {
   return db.one(`
-    INSERT INTO bookstore (title, author, genre)
+    INSERT INTO books (title, author, genre)
     VALUES ($1, $2, $3)
     RETURNING *
   `,
-    [
-      title, author, genre
-    ])
-    .catch(error => {
-      console.error({message: 'Error occured when adding book to db',
-        arguments: arguments});
-      throw error;
-    });
+    [title, author, genre]
+  );
 };
 
-const getAllBooks = () => {
+const getAllBooks = (limit, offset) => {
   return db.any(`
-    SELECT * FROM bookstore
-  `)
-    .catch(error => {
-      console.error({message: 'Error occured when getting list of books from db',
-        arguments: arguments});
-      throw error;
-    });
+    SELECT id, title FROM books
+    LIMIT $1 OFFSET $2
+  `, [limit, offset]
+  );
 };
+
+const countBooks = () => {
+  return db.one(`
+    SELECT COUNT(title) FROM books
+  `);
+};
+
 
 const getOneBook = id => {
   return db.one(`
     SELECT * FROM books WHERE id=$1
-  `, [id])
-    .catch(error => {
-      console.error({message: 'Error occured when adding book to db',
-        arguments: arguments});
-      throw error;
-    });
+  `, [id]
+  );
+};
+
+
+const search = (searchTerm) => {
+  return db.query(`
+    SELECT * FROM books WHERE
+    lower(title || author || genre) LIKE $1::text
+  `,
+    [`%${searchTerm.toLowerCase().replce(/\s+/,'%')}%`]
+  );
 };
 
 const updateBook = (title, author, genre, id) => {
@@ -44,32 +48,24 @@ const updateBook = (title, author, genre, id) => {
     SET title=$1, author=$2, genre=$3
     WHERE id=$4
   `,
-    [
-      title, author, genre, id
-    ])
-    .catch(error => {
-      console.error({message: 'Error occured when adding book to db',
-        arguments: arguments});
-      throw error;
-    });
+    [title, author, genre, id]
+  );
 };
 
 const removeBook = id => {
   return db.result(`
     DELETE FROM books
     WHERE id=$1
-  `, [id])
-    .catch(error => {
-      console.error({message: 'Error occured when adding book to db',
-        arguments: arguments});
-      throw error;
-    });
+  `, [id]
+  );
 };
 
 module.exports = {
   addBook,
   getAllBooks,
   getOneBook,
+  countBooks,
+  search,
   updateBook,
   removeBook
 };

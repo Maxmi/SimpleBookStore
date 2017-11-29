@@ -8,7 +8,7 @@ const logErrors = (err, req, res, next) => {
 };
 
 const notFoundHandler = (req, res) => {
-  res.status(404).render('common/not_found');
+  res.status(404).render('common/error');
 };
 
 const setDefaultResponseLocals = (req, res, next) => {
