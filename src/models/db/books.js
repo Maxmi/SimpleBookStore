@@ -12,7 +12,7 @@ const addBook = (title, author, genre) => {
 
 const getAllBooks = (limit, offset) => {
   return db.any(`
-    SELECT id, title FROM books
+    SELECT id, title, author FROM books
     LIMIT $1 OFFSET $2
   `, [limit, offset]
   );
@@ -53,7 +53,7 @@ const updateBook = (title, author, genre, id) => {
 };
 
 const removeBook = id => {
-  return db.result(`
+  return db.query(`
     DELETE FROM books
     WHERE id=$1
   `, [id]

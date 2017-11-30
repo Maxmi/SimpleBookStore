@@ -1,21 +1,35 @@
 extends layout
 block content
-  a#homePage.btn.btn-info(href='/' role='button') Go Back to Home Page
+  a#homePage.btn.btn-primary(href='/' role='button') Go Back to Home Page
   
-  a#updateBook.btn.btn-success(href='/' role='button') Update
+  form.bookAction(action=`/books/${id}?_method=PUT` method='POST')
+    button.btn.btn-info(type='submit') Update
   
-  a#deleteBook.btn.btn-danger(href='/' role='button') Delete 
+  form.bookAction(action=`/books/${id}?_method=DELETE` method='POST')
+    button.btn.btn-warning(type='submit') Delete
   
+  //- href='/books/:bookID' 
+  //- div.bookInfo
+  //-   h4 Details 
+  //-   li id: #{id}
+  //-   li title: #{title}
+  //-   li author: #{author}
+  //-   li genre: #{genre}
+  //-   li height: #{height}
+  //-   li publisher: #{publisher}
   
-  div.bookInfo
-    h4 Details 
-    //- input(type='text' name='id')
-    li id: #{id}
-    li title: #{title}
-    li author: #{author}
-    li genre: #{genre}
-    li height: #{height}
-    li publisher: #{publisher}
-  
-    
-    //display table with title, author, and genre of the book
+
+  ul.bookDetails
+    li.list-group-item
+      label(for='id') ID
+      div.form-control #{id}
+      label(for='title') Title 
+      div.form-control #{title}
+      label(for='author') Author
+      div.form-control #{author}
+      label(for='genre') Genre 
+      div.form-control #{genre}
+      label(for='height') Height
+      div.form-control #{height}
+      label(for='publisher') Publisher
+      div.form-control #{publisher}

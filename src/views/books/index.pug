@@ -10,18 +10,31 @@ block content
       button#searchBtn.btn-primary(type='submit') Search
     
   div#listOfBooks
-    table
+    table.table.table-bordered
       tr
-        th #
-        th Titles 
-        th Details 
+        th(scope='col') #
+        th(scope='col') Title
+        th(scope='col') Author 
+        th(scope='col') details 
       each book in data 
         tr
           td= book.id
           td= book.title 
+          td= book.author 
           td
             a(href='books/'+book.id) view details 
-  br
+    
+  //- ul#listOfBooks
+  //-   each book in data 
+  //-     li.list-group-item
+  //-       //- button.btn.btn-info.update(type='button') Update
+  //-       //- button.btn.btn-warning.delete(type='button') Delete 
+  //-       div.form-control.id= book.id
+  //-       div.form-control.title= book.title  
+  //-       div.form-control.author= book.author 
+  //-       div.form-control.details 
+  //-         a(href='books/'+book.id) view details 
+  
   include paginate
 
   

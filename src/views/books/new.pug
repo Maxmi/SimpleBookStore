@@ -2,7 +2,7 @@ extends layout
 block content
   h1 New Book
   br
-  a(href='/') Go Back to Home Page
+  a#homePage.btn.btn-info(href='/' role='button') Go Back to Home Page
   div.container
     form#addBook(method='POST')
       label(for='title') Title:
@@ -18,4 +18,4 @@ block content
       br
       p #{error}
       p #{message}
-      button#addBookBtn(type='submit') Add to inventory 
+      button#addBookBtn.btn.btn-primary(type='submit') Add to inventory 
