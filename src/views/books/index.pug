@@ -20,8 +20,7 @@ block content
           td= book.id
           td= book.title 
           td
-            a(href='details') view details 
-            //- this link should be leading to /:bookID or /?bookID=id  
+            a(href='books/'+book.id) view details 
   br
   include paginate
 

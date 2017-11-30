@@ -1,6 +1,21 @@
 extends layout
 block content
-  h1 Book Details 
-    div.bookInfo
+  a#homePage.btn.btn-info(href='/' role='button') Go Back to Home Page
+  
+  a#updateBook.btn.btn-success(href='/' role='button') Update
+  
+  a#deleteBook.btn.btn-danger(href='/' role='button') Delete 
+  
+  
+  div.bookInfo
+    h4 Details 
+    //- input(type='text' name='id')
+    li id: #{id}
+    li title: #{title}
+    li author: #{author}
+    li genre: #{genre}
+    li height: #{height}
+    li publisher: #{publisher}
+  
+    
     //display table with title, author, and genre of the book
-    //have buttons for updating and deleting 

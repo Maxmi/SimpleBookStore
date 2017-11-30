@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
 //validate the form for adding new book
-const validateNewBookForm = () => {
-
-}
+// const validateNewBookForm = () => {
+//
+// }
 
 //add event listener to Add button
-const saveNewBook = (book) => {
-
-}
+// const saveNewBook = (book) => {
+//
+// }
