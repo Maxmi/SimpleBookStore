@@ -5,21 +5,26 @@ body {
 
 #searchForm {
   box-sizing: border-box;
-  width: 50%;
   margin: 5px auto;
-  display: inline-block;
 }
 
-#searchInput {
+#search {
   display: inline-block;
   width: 60%;
 }
 
+#searchBtn {
+  margin: 10px;
+}
 
 #listOfBooks {
   width: 80%;
   padding: 0;
 }
+
+/*#addBook {
+  float: right;
+}*/
 
 .bookDetails {
   width: 50%;

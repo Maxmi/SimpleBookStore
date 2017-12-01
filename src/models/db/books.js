@@ -38,7 +38,7 @@ const search = (searchTerm) => {
     SELECT * FROM books WHERE
     lower(title || author || genre) LIKE $1::text
   `,
-    [`%${searchTerm.toLowerCase().replce(/\s+/,'%')}%`]
+    [`%${searchTerm.toLowerCase().replace(/\s+/,'%')}%`]
   );
 };
 

@@ -1,3 +1,23 @@
 extends layout
 block content
-  h1 Search results
+  a#homePage.btn.btn-primary(href='/' role='button') Go Back to Home Page
+  
+  h5 Search results for `#{searchTerm}`
+  
+  div#listOfBooks
+    table.table.table-bordered
+      tr
+        th(scope='col') #
+        th(scope='col') Title
+        th(scope='col') Author 
+        th(scope='col') Genre 
+        th(scope='col') details 
+        
+      each book in searchRes
+        tr
+          td= book.id
+          td= book.title 
+          td= book.author 
+          td= book.genre 
+          td
+            a(href='books/'+book.id) view details 

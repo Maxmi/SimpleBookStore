@@ -1,40 +1,29 @@
 extends layout
 block content
   h1 Hello Reader!
-  
-  a#addBook.btn.btn-primary(href='new' role='button') Add New Book 
-  
-  div.form-group
-    form#searchForm.form-horizontal
-      input#searchInput.form-control(type='text' name='searchInput' placeholder='Search by title, author or genre')
-      button#searchBtn.btn-primary(type='submit') Search
+  div.container
     
-  div#listOfBooks
-    table.table.table-bordered
-      tr
-        th(scope='col') #
-        th(scope='col') Title
-        th(scope='col') Author 
-        th(scope='col') details 
-      each book in data 
+    div.form-group
+      form#searchForm.form-horizontal(action='/searchResult' method='get')
+        input#search.form-control(type='text' name='search' placeholder='Search by title, author or genre' value=`${query}` autofocus)
+        button#searchBtn.btn.btn-info(type='submit') Search
+        a#addBook.btn.btn-primary(href='new' role='button') Add New Book 
+    
+    div#listOfBooks
+      table.table.table-bordered
         tr
-          td= book.id
-          td= book.title 
-          td= book.author 
-          td
-            a(href='books/'+book.id) view details 
+          th(scope='col') #
+          th(scope='col') Title
+          th(scope='col') Author 
+          th(scope='col') details 
+        each book in data 
+          tr
+            td= book.id
+            td= book.title 
+            td= book.author 
+            td
+              a(href='books/'+book.id) view details 
     
-  //- ul#listOfBooks
-  //-   each book in data 
-  //-     li.list-group-item
-  //-       //- button.btn.btn-info.update(type='button') Update
-  //-       //- button.btn.btn-warning.delete(type='button') Delete 
-  //-       div.form-control.id= book.id
-  //-       div.form-control.title= book.title  
-  //-       div.form-control.author= book.author 
-  //-       div.form-control.details 
-  //-         a(href='books/'+book.id) view details 
-  
-  include paginate
+    include paginate
 
   

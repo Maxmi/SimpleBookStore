@@ -30,7 +30,6 @@ router.get('/new', (req, res) => {
 });
 
 //route to add new book
-//why for adding a book we don't have to write front-end code (add event listener to the add button? Is it because this is in the form and the button is of submit type?)
 router.post('/new', (req, res) => {
   const {title, author, genre} = req.body;
 
@@ -73,11 +72,33 @@ router.delete('/books/:bookID', (req, res) => {
   const { bookID } = req.params;
   booksQueries.removeBook(bookID)
     .then((book) => {
-      console.log('Deleted the book');
+      console.log(`Deleted the book with id ${bookID}`);
       res.redirect('/');
     })
     .catch(err => console.log(err));
 });
 
+//route to update a book
+router.put('/books/:bookID', (req, res) => {
+  const { bookID } = req.params;
+  booksQueries.updateBook(title, author, genre, id)
+    .then(book => {
+      res.render('books/details')
+    })
+    .catch(err => console.log(err));
+});
+
+//route to search
+router.get('/searchResult', (req, res) => {
+  const searchTerm = req.query.search;
+  booksQueries.search(searchTerm)
+    .then(searchRes => {
+      res.render('books/searchResult', {
+        searchTerm,
+        searchRes
+      });
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;
