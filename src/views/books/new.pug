@@ -2,9 +2,10 @@ extends layout
 block content
   h1 New Book
   br
-  a#homePage.btn.btn-info(href='/' role='button') Go Back to Home Page
+  
   div.container
-    form#addBook(method='POST')
+    a#homePage.btn.btn-info(href='/' role='button') Go Back to Home Page
+    form.addBook(method='POST')
       label(for='title') Title:
       input#title.form-control(type='text' name='title')
       br
@@ -16,6 +17,15 @@ block content
       label(for='genre') Genre:
       input#genre.form-control(type='text' name='genre')
       br
-      p #{error}
-      p #{message}
+      
+      label(for='height') Height:
+      input#genre.form-control(type='text' name='height')
+      br
+          
+      label(for='publisher') Publisher:
+      input#genre.form-control(type='text' name='publisher')
+      br  
+        
+      //- p #{error}
+      //- p #{message}
       button#addBookBtn.btn.btn-primary(type='submit') Add to inventory 

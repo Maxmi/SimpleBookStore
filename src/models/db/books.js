@@ -1,12 +1,12 @@
 const db = require('./db');
 
-const addBook = (title, author, genre) => {
+const addBook = (title, author, genre, height, publisher) => {
   return db.one(`
-    INSERT INTO books (title, author, genre)
-    VALUES ($1, $2, $3)
+    INSERT INTO books (title, author, genre, height, publisher)
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *
   `,
-    [title, author, genre]
+    [title, author, genre, height, publisher]
   );
 };
 
@@ -33,6 +33,14 @@ const getOneBook = id => {
 };
 
 
+const getIdByTitle = title => {
+  return db.one(`
+    SELECT id FROM books WHERE title=$1
+  `, [title]
+  );
+};
+
+
 const search = (searchTerm) => {
   return db.query(`
     SELECT * FROM books WHERE
@@ -42,13 +50,14 @@ const search = (searchTerm) => {
   );
 };
 
-const updateBook = (title, author, genre, id) => {
-  return db.none(`
+const saveBook = (id, title, author, genre, height, publisher) => {
+  return db.query(`
     UPDATE books
-    SET title=$1, author=$2, genre=$3
-    WHERE id=$4
+    SET id=$1, title=$2, author=$3, genre=$4, height=$5, publisher=$6
+    WHERE id=$1
+    RETURNING *
   `,
-    [title, author, genre, id]
+    [id, title, author, genre, height, publisher]
   );
 };
 
@@ -64,8 +73,9 @@ module.exports = {
   addBook,
   getAllBooks,
   getOneBook,
+  getIdByTitle,
   countBooks,
   search,
-  updateBook,
+  saveBook,
   removeBook
 };

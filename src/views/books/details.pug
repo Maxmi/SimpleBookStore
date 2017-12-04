@@ -1,26 +1,12 @@
 extends layout
 block content
-  a#homePage.btn.btn-primary(href='/' role='button') Go Back to Home Page
-  
-  form.bookAction(action=`/books/${id}?_method=PUT` method='POST')
-    button.btn.btn-info(type='submit') Update
-  
-  form.bookAction(action=`/books/${id}?_method=DELETE` method='POST')
-    button.btn.btn-warning(type='submit') Delete
-  
-  //- href='/books/:bookID' 
-  //- div.bookInfo
-  //-   h4 Details 
-  //-   li id: #{id}
-  //-   li title: #{title}
-  //-   li author: #{author}
-  //-   li genre: #{genre}
-  //-   li height: #{height}
-  //-   li publisher: #{publisher}
-  
-
-  ul.bookDetails
-    li.list-group-item
+  div.homeBtnParent
+    a#homePage.btn.btn-primary(href='/' role='button') Go Back to Home Page
+  div.form
+    form.bookAction(action=`/books/${id}?_method=PUT` method='POST')
+      div.updBtnParent
+        button.btn.btn-info.update#updateBtn(type='submit') Update
+      br
       label(for='id') ID
       div(name='id').form-control #{id}
       label(for='title') Title 
@@ -33,3 +19,8 @@ block content
       div(name='height').form-control #{height}
       label(for='publisher') Publisher
       div(name='publisher').form-control #{publisher}
+  div.delBtnParent
+    form.bookAction(action=`/books/${id}?_method=DELETE` method='POST')
+      button.btn.btn-warning#delBtn(type='submit') Delete
+
+  script(src="/js/script.js")

@@ -40,8 +40,15 @@ router.post('/new', (req, res) => {
   } else {
     booksQueries.addBook(title, author, genre)
       .then(book => {
-        res.render('books/new', {
-          message: 'New book has been added to inventory.'
+        // console.log(book);
+        console.log(`New book with id ${book.id} has been added to inventory.`);
+        res.render('books/details', {
+          id: book.id,
+          title: book.title,
+          author: book.author,
+          genre: book.genre,
+          height: book.height,
+          publisher: book.publisher
         })
       })
       .catch(err => {
@@ -67,23 +74,22 @@ router.get('/books/:bookID', (req, res) => {
     .catch(err => console.log(err));
 });
 
-//route to delete a book
-router.delete('/books/:bookID', (req, res) => {
-  const { bookID } = req.params;
-  booksQueries.removeBook(bookID)
-    .then((book) => {
-      console.log(`Deleted the book with id ${bookID}`);
-      res.redirect('/');
-    })
-    .catch(err => console.log(err));
-});
-
 //route to update a book
 router.put('/books/:bookID', (req, res) => {
-  const { bookID } = req.params;
-  booksQueries.updateBook(title, author, genre, id)
-    .then(book => {
-      res.render('books/details')
+  const { id, title, author, genre, height, publisher } = req.body;
+  booksQueries.saveBook(id, title, author, genre, height, publisher)
+    .then(() => {
+      booksQueries.getOneBook(id)
+        .then(book => {
+          res.render('books/details', {
+            id: book.id,
+            title: book.title,
+            author: book.author,
+            genre: book.genre,
+            height: book.height,
+            publisher: book.publisher
+          });
+        });
     })
     .catch(err => console.log(err));
 });
@@ -100,5 +106,18 @@ router.get('/searchResult', (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+
+//route to delete a book
+router.delete('/books/:bookID', (req, res) => {
+  const { bookID } = req.params;
+  booksQueries.removeBook(bookID)
+    .then((book) => {
+      console.log(`Deleted the book with id ${bookID}`);
+      res.redirect('/');
+    })
+    .catch(err => console.log(err));
+});
+
 
 module.exports = router;
