@@ -1,16 +1,27 @@
-div#pagination
+div.paginationDiv
   ul.pagination
-    if(currentPage != 1)
+    //show link to 1st page only on page other than 1
+    if(currentPage !== 1)
       li.page-item 
         a.page-link(href='/?page=1')= '1 '
-      if(currentPage > 10)
-        li.page-item 
-          a.page-link(href='/?page='+(currentPage-10))= '<< '
+    //show link to previous 10 pages only on pages > 10
+    if(currentPage >= 10)
+      li.page-item 
+        a.page-link(href='/?page='+(currentPage-10))= '<< '
+      //display links to pages and highlight the current page
     - for(var i = currentPage; i < lastPage; i++)
-      if(currentPage < totalPages) 
-        li.page-item
-          a.page-link(href='/?page='+i)= i+' '
-    if(currentPage !== totalPages)
+      if(currentPage < totalPages)
+        if(currentPage === i) 
+          li.page-item.active
+            a.page-link(href='/?page='+i)= i+' '
+        else
+          li.page-item
+            a.page-link(href='/?page='+i)= i+' '
+      
+      if(i >= totalPages)
+        - break
+    //show link to next 10 pages only on pages that meet this condition 
+    if(currentPage < totalPages-lastPage)
       li.page-item
         a.page-link(href='/?page='+(lastPage))= '>>' 
 br

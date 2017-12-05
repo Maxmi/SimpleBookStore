@@ -1,13 +1,12 @@
 const router = require('express').Router();
 const booksQueries = require('../../models/db/books');
-// const booksRoutes = require('./books');
 
 // route to home page
 router.get('/', (req, res) => {
   const currentPage = parseInt(req.query.page || 1);
   const limit = 10;
   const offset = (currentPage - 1) * limit;
-  const numPageLinks = (10);
+  const numPageLinks = 10;
   const lastPage = currentPage + numPageLinks;
   let totalPages;
 

@@ -24,8 +24,11 @@ div.form-group.indexPage {
 #searchBtn {
   margin: 10px;
 }
+div.paginationDiv {
+  margin: 0 auto;
+}
 
-div.container.indexPage, div.searchResults {
+div.container.indexPage {
   width: 70%;
 }
 
@@ -46,4 +49,8 @@ form.addBook, div.form, div.delBtnParent {
 #updateBtn, #delBtn {
   float: right;
   display: block;
+}
+
+p.error {
+  color: red;
 }

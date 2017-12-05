@@ -2,12 +2,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
   console.log('DOM fully loaded and parsed');
 });
 
-//validate the form for adding new book
-// const validateNewBookForm = () => {
-//
-// }
-
-
 //create new fields for saving updated book info
 const createInput = (type, name, cssClass, val) => {
   const inputEl = document.createElement('input');
@@ -51,7 +45,6 @@ const editBook = () => {
 };
 
 
-
 //handler for Update button
 const updBtnParent = document.querySelector('.updBtnParent');
 
@@ -66,9 +59,9 @@ updBtnParent.addEventListener('click', (e) => {
       editBook();
       button.textContent = 'Save';
     } else {
-      button.textContent = 'Update'
+      //here a PUT request with method-override will run(send updated info to db then retreive and display it again)
+      button.textContent = 'Update';
     }
   }
-
 },
 {once: true, });

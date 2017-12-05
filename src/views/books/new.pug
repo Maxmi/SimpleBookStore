@@ -7,15 +7,15 @@ block content
     a#homePage.btn.btn-info(href='/' role='button') Go Back to Home Page
     form.addBook(method='POST')
       label(for='title') Title:
-      input#title.form-control(type='text' name='title')
+      input#title.form-control(type='text' name='title' required)
       br
       
       label(for='author') Author:
-      input#author.form-control(type='text' name='author')
+      input#author.form-control(type='text' name='author' required)
       br
         
       label(for='genre') Genre:
-      input#genre.form-control(type='text' name='genre')
+      input#genre.form-control(type='text' name='genre' required)
       br
       
       label(for='height') Height:
@@ -26,5 +26,5 @@ block content
       input#genre.form-control(type='text' name='publisher')
       br  
         
-      p #{error}
+      p.error #{error}
       button#addBookBtn.btn.btn-primary(type='submit') Add to inventory 

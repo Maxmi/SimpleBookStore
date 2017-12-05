@@ -1,5 +1,4 @@
-#Highlight current page
-#Form validation 
+#Don't allow to go to empty pages - is it possible?
 #Move books-related routes into books.js file
 #Stretch goals:
  - user registration
