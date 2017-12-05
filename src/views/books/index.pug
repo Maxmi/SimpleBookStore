@@ -1,16 +1,16 @@
 extends layout
 block content
-  h1 Hello Reader!
-  div.container
+  h1.indexPage Hello Reader!
+  div.container.indexPage
     
-    div.form-group
+    div.form-group.indexPage
       form#searchForm.form-horizontal(action='/searchResult' method='get')
         input#search.form-control(type='text' name='search' placeholder='Search by title, author or genre' value=`${query}` autofocus)
         button#searchBtn.btn.btn-info(type='submit') Search
         a#addBook.btn.btn-primary(href='new' role='button') Add New Book 
     
     div#listOfBooks
-      table.table.table-bordered
+      table.table.table-bordered.table-sm
         tr
           th(scope='col') #
           th(scope='col') Title

@@ -31,14 +31,14 @@ router.get('/new', (req, res) => {
 
 //route to add new book
 router.post('/new', (req, res) => {
-  const {title, author, genre} = req.body;
+  const {title, author, genre, height, publisher} = req.body;
 
   if(!(title || author || genre)) {
     res.render('books/new', {
-      error: 'All fields are required.'
+      error: 'Title, author and genre fields are required.'
     });
   } else {
-    booksQueries.addBook(title, author, genre)
+    booksQueries.addBook(title, author, genre, height, publisher)
       .then(book => {
         // console.log(book);
         console.log(`New book with id ${book.id} has been added to inventory.`);

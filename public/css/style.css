@@ -3,6 +3,14 @@ body {
   margin: 0 auto;
 }
 
+h1.indexPage {
+  text-align: center;
+}
+
+div.form-group.indexPage {
+  margin: 0 auto;
+  text-align: center;
+}
 #searchForm {
   box-sizing: border-box;
   margin: 5px auto;
@@ -15,6 +23,10 @@ body {
 
 #searchBtn {
   margin: 10px;
+}
+
+div.container.indexPage, div.searchResults {
+  width: 70%;
 }
 
 form.addBook, div.form, div.delBtnParent {
