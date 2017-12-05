@@ -1,6 +1,6 @@
-#Pagination - show only pages with content, don't show empty pages
 #Highlight current page
+#Form validation 
 #Move books-related routes into books.js file
 #Stretch goals:
  - user registration
- - different roles and different actions available for them 
+ - different roles and different actions available for them

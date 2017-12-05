@@ -7,20 +7,27 @@ router.get('/', (req, res) => {
   const currentPage = parseInt(req.query.page || 1);
   const limit = 10;
   const offset = (currentPage - 1) * limit;
-  const numPageLinks = 10;
+  const numPageLinks = (10);
   const lastPage = currentPage + numPageLinks;
-  // const isMoreRows = booksQueries.numRowsAfterOffset(offset, numPageLinks * limit);
+  let totalPages;
 
-  booksQueries.getAllBooks(limit, offset)
-    .then(books => {
-      res.render('books/index', {
-        title: 'SimpleBookStore Home Page',
-        data: books,
-        currentPage,
-        lastPage,
-      });
+  booksQueries.countBooks()
+    .then(result => {
+      totalPages = Math.ceil(parseInt(result.count) / limit);
     })
-    .catch(err => console.log(err));
+    .then(() => {
+      booksQueries.getAllBooks(limit, offset)
+        .then(books => {
+          res.render('books/index', {
+            title: 'SimpleBookStore Home Page',
+            data: books,
+            currentPage,
+            lastPage,
+            totalPages
+          });
+        })
+        .catch(err => console.log(err));
+    });
 });
 
 
@@ -40,7 +47,6 @@ router.post('/new', (req, res) => {
   } else {
     booksQueries.addBook(title, author, genre, height, publisher)
       .then(book => {
-        // console.log(book);
         console.log(`New book with id ${book.id} has been added to inventory.`);
         res.render('books/details', {
           id: book.id,

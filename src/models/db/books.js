@@ -33,14 +33,6 @@ const getOneBook = id => {
 };
 
 
-const getIdByTitle = title => {
-  return db.one(`
-    SELECT id FROM books WHERE title=$1
-  `, [title]
-  );
-};
-
-
 const search = (searchTerm) => {
   return db.query(`
     SELECT * FROM books WHERE
@@ -73,7 +65,6 @@ module.exports = {
   addBook,
   getAllBooks,
   getOneBook,
-  getIdByTitle,
   countBooks,
   search,
   saveBook,

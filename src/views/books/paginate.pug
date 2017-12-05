@@ -6,9 +6,11 @@ div#pagination
       if(currentPage > 10)
         li.page-item 
           a.page-link(href='/?page='+(currentPage-10))= '<< '
-    - for(var i = currentPage; i < lastPage; i++) 
+    - for(var i = currentPage; i < lastPage; i++)
+      if(currentPage < totalPages) 
+        li.page-item
+          a.page-link(href='/?page='+i)= i+' '
+    if(currentPage !== totalPages)
       li.page-item
-        a.page-link(href='/?page='+i)= i+' '
-    li.page-item
-      a.page-link(href='/?page='+(lastPage))= '>>' 
+        a.page-link(href='/?page='+(lastPage))= '>>' 
 br
