@@ -11,12 +11,8 @@ div.paginationDiv
       //display links to pages and highlight the current page
     - for(var i = currentPage; i < lastPage; i++)
       if(currentPage < totalPages)
-        if(currentPage === i) 
-          li.page-item.active
-            a.page-link(href='/?page='+i)= i+' '
-        else
-          li.page-item
-            a.page-link(href='/?page='+i)= i+' '
+        li.page-item(class={"active": currentPage === i})
+          a.page-link(href='/?page='+i)= i+' '
       
       if(i >= totalPages)
         - break

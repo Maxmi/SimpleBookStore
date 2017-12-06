@@ -13,6 +13,12 @@ router.get('/', (req, res) => {
   booksQueries.countBooks()
     .then(result => {
       totalPages = Math.ceil(parseInt(result.count) / limit);
+      if(currentPage > totalPages) {
+        res.status(404);
+        res.render('books/error', {
+          error: '404 not found'
+        });
+      }
     })
     .then(() => {
       booksQueries.getAllBooks(limit, offset)

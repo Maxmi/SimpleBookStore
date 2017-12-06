@@ -1,5 +1,3 @@
-#Don't allow to go to empty pages - is it possible?
-#Move books-related routes into books.js file
 #Stretch goals:
  - user registration
  - different roles and different actions available for them
