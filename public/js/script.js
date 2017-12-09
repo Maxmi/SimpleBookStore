@@ -51,16 +51,20 @@ const updBtnParent = document.querySelector('.updBtnParent');
 updBtnParent.addEventListener('click', (e) => {
   e.preventDefault();
   let button = document.getElementById('updateBtn');
-  button = e.target;
+  // button = e.target;
 
-  if(e.target.tagName === 'BUTTON') {
-    button.classList.toggle('save');
-    if(button.textContent === 'Update') {
+  if(button.tagName === 'BUTTON') {
+    // button.classList.toggle('save');
+    if(button.classList.contains('update')) {
       editBook();
       button.textContent = 'Save';
+      button.classList.add('save');
+      button.classList.remove('update');
     } else {
       //here a PUT request with method-override will run(send updated info to db then retreive and display it again)
       button.textContent = 'Update';
+      button.classList.add('update');
+      button.classList.remove('save');
     }
   }
 },

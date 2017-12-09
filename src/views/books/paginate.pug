@@ -5,7 +5,7 @@ div.paginationDiv
       li.page-item 
         a.page-link(href='/?page=1')= '1 '
     //show link to previous 10 pages only on pages > 10
-    if(currentPage >= 10)
+    if(currentPage > 10)
       li.page-item 
         a.page-link(href='/?page='+(currentPage-10))= '<< '
       //display links to pages and highlight the current page
@@ -17,7 +17,7 @@ div.paginationDiv
       if(i >= totalPages)
         - break
     //show link to next 10 pages only on pages that meet this condition 
-    if(currentPage < totalPages-lastPage)
+    if(currentPage < totalPages)
       li.page-item
         a.page-link(href='/?page='+(lastPage))= '>>' 
 br
