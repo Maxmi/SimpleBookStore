@@ -5,8 +5,8 @@ block content
     
     div.form-group.indexPage
       form#searchForm.form-horizontal(action='/searchResult' method='get')
-        input#search.form-control(type='text' name='search' placeholder='Search by title, author or genre' value=`${query}` autofocus)
-        button#searchBtn.btn.btn-info(type='submit') Search
+        input#search.form-control.search(type='text' name='search' placeholder='Search by title, author or genre' autofocus)
+        button#searchBtn.btn.btn-info.searchBtn(type='submit') Search
         a#addBook.btn.btn-primary(href='new' role='button') Add New Book 
     
     div#listOfBooks

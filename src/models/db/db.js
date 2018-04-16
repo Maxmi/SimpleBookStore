@@ -1,15 +1,17 @@
 const pgp = require('pg-promise')();
 
-// const monitor = require('pg-monitor');
-// monitor.attach({});
+const makeConnectionString = () => {
+  switch(process.env.NODE_ENV) {
+  case 'production':
+    return `${process.env.DATABASE_URL}?ssl=true`;
+  case 'test':
+    return `${process.env.DATABASE_URL}_test?ssl=false`;
+  default:
+    return process.env.DATABASE_URL;
+  }
+};
 
-const connectionString = process.env.DATABASE_URL || `postgres://${process.env.USER}@localhost:5432/bookstore`;
-
-// const connectionString = {
-//   host: 'localhost',
-//   port: 5432,
-//   database: process.env.NODE_ENV === 'test' ? 'bookstore_test' : 'bookstore'
-// };
+const connectionString = makeConnectionString();
 
 const db = pgp(connectionString);
 

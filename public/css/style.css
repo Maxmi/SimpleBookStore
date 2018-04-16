@@ -11,17 +11,17 @@ div.form-group.indexPage {
   margin: 0 auto;
   text-align: center;
 }
-#searchForm {
+.form-horizontal {
   box-sizing: border-box;
   margin: 5px auto;
 }
 
-#search {
+.form-control.search {
   display: inline-block;
   width: 60%;
 }
 
-#searchBtn {
+.searchBtn {
   margin: 10px;
 }
 div.paginationDiv {
@@ -46,7 +46,7 @@ form.addBook, div.form, div.delBtnParent {
   display: inline;
 }
 
-#updateBtn, #delBtn {
+.update, .delete {
   float: right;
   display: block;
 }

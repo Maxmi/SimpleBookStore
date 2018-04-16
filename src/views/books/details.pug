@@ -21,6 +21,6 @@ block content
       div(name='publisher').form-control #{publisher}
   div.delBtnParent
     form.bookAction(action=`/books/${id}?_method=DELETE` method='POST')
-      button.btn.btn-warning#delBtn(type='submit') Delete
+      button.btn.btn-warning.delete#delBtn(type='submit') Delete
 
   script(src="/js/script.js")

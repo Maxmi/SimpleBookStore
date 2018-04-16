@@ -47,12 +47,11 @@ router.post('/new', (req, res) => {
 
   if(!(title || author || genre)) {
     res.render('books/new', {
-      error: 'Title, author and genre fields are required.'
+      error: 'Title and author fields are required.'
     });
   } else {
     booksQueries.addBook(title, author, genre, height, publisher)
       .then(book => {
-        console.log(`New book with id ${book.id} has been added to inventory.`);
         res.render('books/details', {
           id: book.id,
           title: book.title,
@@ -123,11 +122,16 @@ router.get('/searchResult', (req, res) => {
 router.delete('/books/:bookID', (req, res) => {
   const { bookID } = req.params;
   booksQueries.removeBook(bookID)
-    .then((book) => {
-      console.log(`Deleted the book with id ${bookID}`);
+    .then(() => {
       res.redirect('/');
     })
     .catch(err => console.log(err));
+});
+
+
+// error handler for all other routes
+router.use((err, req, res) => {
+  res.json({ error: true, message: err.toString() });
 });
 
 
