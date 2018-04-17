@@ -37,7 +37,7 @@ describe('database queries', () => {
     });
 
     context('when db has data and limit=1 and offset=0', () => {
-      it('should return one record, which is the 1st row of the table', () => {
+      it('should return one record, skipping 0 rows from the beginning of the table', () => {
         return getAllBooks(1,0)
           .then(books => {
             expect(books).to.be.a('array');
@@ -48,7 +48,7 @@ describe('database queries', () => {
     });
 
     context('when db has data and limit=1 and offset=1', () => {
-      it('should return one record, which is the 2nd row of the table', () => {
+      it('should return one record, skipping 1 row from the beginning of the table', () => {
         return getAllBooks(1,1)
           .then(books => {
             expect(books).to.be.a('array');
@@ -64,9 +64,9 @@ describe('database queries', () => {
       it('should return results for that title', () => {
         return search('Sherlock')
           .then(results => {
-            expect(results).to.be.a('array');
-            expect(results.length).to.be.above(0);
-            expect(results[0].title).to.contain('Sherlock');
+            results.every(book => {
+              expect(book.title).to.contain('Sherlock');
+            });
           });
       });
     });
@@ -74,9 +74,9 @@ describe('database queries', () => {
       it('should return results for that author', () => {
         return search('doyle')
           .then(results => {
-            expect(results).to.be.a('array');
-            expect(results.length).to.be.above(0);
-            expect(results[0].author).to.contain('Doyle');
+            results.every(book => {
+              expect(book.author).to.contain('Doyle');
+            });
           });
       });
     });
@@ -84,9 +84,9 @@ describe('database queries', () => {
       it('should return results for that genre', () => {
         return search('psychology')
           .then(results => {
-            expect(results).to.be.a('array');
-            expect(results.length).to.be.above(0);
-            expect(results[0].genre).to.equal('psychology');
+            results.every(book => {
+              expect(book.genre).to.contain('psychology');
+            });
           });
       });
     });
