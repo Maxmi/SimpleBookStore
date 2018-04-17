@@ -11,10 +11,11 @@
     "db:seed": "psql bookstore < src/models/db/seed/init_data.sql",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:reset": "npm run db:drop && npm run db:init && npm run db:seed",
+
     "test:db:drop": "NODE_ENV=test dropdb --if-exists bookstore_test",
     "test:db:create": "NODE_ENV=test dropdb --if-exists bookstore_test && createdb bookstore_test",
     "test:db:schema": "NODE_ENV=test psql bookstore_test < ./src/models/db/schema.sql",
-    "test:db:seed": "NODE_ENV=test psql bookstore_test < src/models/db/seed/init_data.sql",
+    "test:db:seed": "NODE_ENV=test psql bookstore_test < test/testseed.sql",
     "test:db:reset": "NODE_ENV=test npm run test:db:create && npm run test:db:schema && npm run test:db:seed",
     "test": "npm run test:db:reset && NODE_ENV=test mocha --recursive --exit",
     "lint": "eslint *.js"

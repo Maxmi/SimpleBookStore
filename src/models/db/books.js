@@ -47,7 +47,7 @@ const countBooks = () => {
 /**
  * Function to get data on one book
  * @param  { Number } id ID of a book to retrieve info on
- * @return { Promise }    Promise resolving into an object representing a book
+ * @return { Promise }   Promise resolving into an object representing a book
  */
 
 const getOneBook = id => {
@@ -63,7 +63,7 @@ const getOneBook = id => {
  * @return { Promise }           Promise resolving into array of objects each representing returned book
  */
 const search = (searchTerm) => {
-  return db.query(`
+  return db.any(`
     SELECT * FROM books WHERE
     title || author || genre ILIKE '%$1#%'
   `, [searchTerm]
@@ -82,7 +82,7 @@ const search = (searchTerm) => {
  * @return { Promise }          Promise resolving into object with book data
  */
 const saveBook = (id, title, author, genre, height, publisher) => {
-  return db.query(`
+  return db.one(`
     UPDATE books
     SET id=$1, title=$2, author=$3, genre=$4, height=$5, publisher=$6
     WHERE id=$1
@@ -98,7 +98,7 @@ const saveBook = (id, title, author, genre, height, publisher) => {
  * @return { Promise }   Promise who's resolution is unimportant
  */
 const removeBook = id => {
-  return db.query(`
+  return db.none(`
     DELETE FROM books
     WHERE id=$1
   `, [id]
