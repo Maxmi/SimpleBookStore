@@ -59,7 +59,7 @@ router.post('/new', (req, res) => {
           genre: book.genre,
           height: book.height,
           publisher: book.publisher
-        })
+        });
       })
       .catch(err => {
         console.log(err);
