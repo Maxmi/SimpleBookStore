@@ -11,7 +11,6 @@
     "db:seed": "psql bookstore < src/models/db/seed/init_data.sql",
     "db:init": "npm run db:create && npm run db:schema && npm run db:seed",
     "db:reset": "npm run db:drop && npm run db:init && npm run db:seed",
-
     "test:db:drop": "NODE_ENV=test dropdb --if-exists bookstore_test",
     "test:db:create": "NODE_ENV=test dropdb --if-exists bookstore_test && createdb bookstore_test",
     "test:db:schema": "NODE_ENV=test psql bookstore_test < ./src/models/db/schema.sql",
@@ -25,10 +24,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
-    "lodash": "^4.17.4",
     "method-override": "^2.3.10",
     "pg-promise": "^7.3.2",
     "pug": "^2.0.0-rc.4"
@@ -42,7 +39,6 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
-    "mocha": "^5.1.0",
-    "pg-monitor": "^0.8.3"
+    "mocha": "^5.1.0"
   }
 }
