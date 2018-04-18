@@ -1,4 +1,4 @@
-# TodoList
+# SimpleBookStore
 
 ## Summary
 My implementation of [Simple Book Store module of Learners Guild curriculum](https://curriculum.learnersguild.org/Phases/Practice/Modules/Simple-Book-Store/).  
